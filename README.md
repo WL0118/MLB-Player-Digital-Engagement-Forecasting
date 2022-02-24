@@ -10,6 +10,8 @@ You can check the process in the Kaggle Notebook.
 
  The result of a basic model with given data shows **'player_id'**  is a good feature for the model. When we think about the result, It is common sense that a popular MLB player is always highlighted by people while a non-popular MLB player is not. 
 
+![image](https://user-images.githubusercontent.com/70621565/155508636-735da4dc-caa6-4612-902f-8842559eb816.png)
+
 The Picture of an EDA result of 'AVG target values by Year-Month' from the ['Kaggle NB: Getting Started with MLB Player Digital Engagement'.](https://www.kaggle.com/ryanholbrook/getting-started-with-mlb-player-digital-engagement)
 I assumed that there are some critical relationship between **4 target values and time-serise data(Year-Month-Day).**
 
@@ -28,6 +30,8 @@ By using these main who clues I made new features and the process should **AVOID
 
 Player A(May. 15. 2021) : Player A target mean value (May 2020 , May 2019)
 I added target mean values with the same month but the previous(to avoid future data leak) year each row for the train data.
+
+![image](https://user-images.githubusercontent.com/70621565/155508689-a8e42faa-6d79-46f6-b7a2-3ab6b4f75939.png)
 
 If there is a May 15th, 2021 train data row for player A, I calculated target mean values of May 2020 and May 2019 and put them into features for the model.
 When we compare sales revenues by quarters for a company, usually economists compare present quarter revenue with not the previous quarter's revenues but same quarter revenues in a previous year. My first feature engineering idea came from this.
@@ -60,5 +64,8 @@ To find correlation between precious year and this year, I calculated a ratio of
 
 The reason I use 'Jan+Feb+Mar' is that they are only perfect dataset on 2021 year data
 
+### 4. Feature importance
 
+![image](https://user-images.githubusercontent.com/70621565/155508898-180edacd-b7ca-4d12-adf7-2d8d82478c99.png)
 
+We can check the feature importance result and new features are highly ranked on the result. 
