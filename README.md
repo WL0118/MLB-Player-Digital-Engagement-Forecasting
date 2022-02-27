@@ -8,17 +8,20 @@ You can check the process in the Kaggle Notebook.
 
 ## Key Insight for the feature engineering ##
 
+![image](https://user-images.githubusercontent.com/70621565/155867250-84fa8c7c-7397-4020-bfc5-10ea8aefa06d.png)
+*4 Feature importances with a basic model*
+
  The result of a basic model with given data shows **'player_id'**  is a good feature for the model. When we think about the result, It makes sense when we consider that a popular MLB player is always focused by people while a non-popular MLB player is not. 
 
 ![image](https://user-images.githubusercontent.com/70621565/155508636-735da4dc-caa6-4612-902f-8842559eb816.png)
 
-The Picture of an EDA result of 'AVG target values by Year-Month' from the ['Kaggle NB: Getting Started with MLB Player Digital Engagement'.](https://www.kaggle.com/ryanholbrook/getting-started-with-mlb-player-digital-engagement)
-I assumed that there are some critical relationship between **4 target values and time-serise data(Year-Month-Day).**
+The Picture is an EDA result of 'AVG target values by Year-Month' from the ['Kaggle NB: Getting Started with MLB Player Digital Engagement'.](https://www.kaggle.com/ryanholbrook/getting-started-with-mlb-player-digital-engagement)
+With the result, I assumed that there are some critical relationship between **4 target values and time-serise data(Year-Month-Day).**
 
-By using these main who clues I made new features and the process should **AVOID FUTURE DATA LEAK**!
+By using these main two clues I made new features. I also realized that the process to make new features should **AVOID FUTURE DATA LEAK**!
 
 
-### 1. Get mean values for each target value using 'Group-by' player_id and same month but previous year.
+### 1. Get mean values for each target value using 'Group-by' 'player_id' and same 'month' but 'previous-year'.
 
 
 
@@ -33,7 +36,7 @@ I added target mean values with the same month but the previous(to avoid future 
 
 ![image](https://user-images.githubusercontent.com/70621565/155508689-a8e42faa-6d79-46f6-b7a2-3ab6b4f75939.png)
 
-If there is a May 15th, 2021 train data row for player A, I calculated target mean values of May 2020 and May 2019 and put them into features for the model.
+If there is a May 15th, 2021 train data row for player A, I calculated target mean values of May 2020 and May 2019 and put them into features for that row(15th, 2021) for the training model.
 When we compare sales revenues by quarters for a company, usually economists compare present quarter revenue with not the previous quarter's revenues but same quarter revenues in a previous year. My first feature engineering idea came from this.
 
 ### 2. Get mean values for each target value using 'Group-by' player_id and previous month as well as next month but the previous years'
@@ -45,8 +48,8 @@ When we compare sales revenues by quarters for a company, usually economists com
 |A|2021|5|17|**9**(*Apr 20. avg target_1 for player A*)|**16**(*Jun 20. avg target_1 for player A*)|14|
 |A|2021|5|18|**9**(*Apr 20. avg target_1 for player A*)|**16**(*Jun 20. avg target_1 for player A*)|15|
 
-Player A(May. 15. 2021) : Player A harget mean value (April 2020 , Jun 2020)
-If there is a May 15th, 2021 train data row for player A, I calculated target mean values of April 2020 and Jun 2020 for player A and put them into features for the model.
+Player A(May. 15. 2021) : Player A target mean value (April 2020 , Jun 2020)
+If there is a May 15th, 2021 train data row for player A, I calculated target mean values of April 2020 and Jun 2020 for player A and put them into features for that row(15th, 2021) for the training model.
 
 Based on the EDA graph, If I want to get one of May's target values, April and Jun data can be a good feature. However, in the test set, we cannot get future-month of statistical features. Therefore, instead of 2021 April and Jun mean target values, I put 2020 April and Jun mean target values in this example case. But these features are from the previous year one, therefore, I thought it require something that helps to connect the previous year (2020) and this year(2021)
 
