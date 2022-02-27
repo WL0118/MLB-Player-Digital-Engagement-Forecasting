@@ -2,13 +2,13 @@
 
 ## About The Project
 
-this project is to make a time series data prediction model.
-We have to predict 'the fan engagement scores (target 1,2,3,4)' by each date and player with given MLB data.
+The goal for this project is to make a time series data prediction model.
+We have to predict 'the 4 fan engagement scores (target 1,2,3,4)' by each given MLB player time-serise data.
 You can check the process in the Kaggle Notebook.
 
 ## Key Insight for the feature engineering ##
 
- The result of a basic model with given data shows **'player_id'**  is a good feature for the model. When we think about the result, It is common sense that a popular MLB player is always highlighted by people while a non-popular MLB player is not. 
+ The result of a basic model with given data shows **'player_id'**  is a good feature for the model. When we think about the result, It makes sense when we consider that a popular MLB player is always focused by people while a non-popular MLB player is not. 
 
 ![image](https://user-images.githubusercontent.com/70621565/155508636-735da4dc-caa6-4612-902f-8842559eb816.png)
 
